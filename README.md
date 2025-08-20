@@ -120,4 +120,4 @@ pretty_regions(keyword, data, region_names) – форматирует резу�
 
 ## Лицензия
 
-MIT License
+GPL-3.0 license
