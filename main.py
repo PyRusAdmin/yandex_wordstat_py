@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
-import os
 import time
 
 import requests
-from dotenv import load_dotenv
 from loguru import logger
 
-load_dotenv(dotenv_path='.env')
-
-OAuth = os.getenv('OAuth')
+from keys import OAuth
 
 
 def create_wordstat_report(keyword: str):
@@ -16,21 +12,15 @@ def create_wordstat_report(keyword: str):
     Получение данных по ключевому слову из Wordstat API (v1)
     """
     url = "https://api.wordstat.yandex.net/v1/regions"
-
     headers = {
         "Authorization": f"Bearer {OAuth}",
         "Content-Type": "application/json",
     }
-
     payload = {
         "phrase": keyword,
-        # "numPhrases": 20,  # по умолчанию 50, максимум 2000
         "regionType": "all",
-        # "devices": ["all"],  # можно: all, desktop, phone, tablet
     }
-
     response = requests.post(url, json=payload, headers=headers)
-
     if response.status_code == 200:
         data = response.json()
         logger.debug("📊 Ответ Wordstat:", data)
@@ -44,41 +34,33 @@ def pretty_wordstat(data: dict) -> str:
     lines = []
     lines.append(f"📊 Запрос: {data['requestPhrase']}")
     lines.append(f"🔢 Общая частота: {data['totalCount']:,}".replace(",", " "))
-
     lines.append("\n✨ Топ запросы:")
     for item in data.get("topRequests", []):
         lines.append(f"   • {item['phrase']} — {item['count']:,}".replace(",", " "))
-
     lines.append("\n🔗 Ассоциации:")
     for item in data.get("associations", []):
         lines.append(f"   • {item['phrase']} — {item['count']:,}".replace(",", " "))
-
     return "\n".join(lines)
 
 
 def pretty_regions(keyword: str, data: dict) -> str:
     if not data or 'regions' not in data:
         return "Нет данных о регионах"
-
     result = [f"📊 Региональная статистика для: '{keyword}'"]
     result.append("\n📍 Топ регионов (по количеству запросов):")
-
     # Сортируем по убыванию count
     sorted_regions = sorted(data['regions'], key=lambda x: x['count'], reverse=True)
-
     for region in sorted_regions[:10]:
         region_id = region['regionId']
         count = f"{region['count']:,}".replace(",", " ")
         share = region['share'] * 100
         affinity = region['affinityIndex']
         result.append(f"   • ID {region_id} — {count} запросов (доля: {share:.2f}%, индекс: {affinity:.1f})")
-
     return "\n".join(result)
 
 
 def main():
     keywords = ["маркетинг", "обучение", "курсы"]
-
     for keyword in keywords:
         logger.info(f"🔍 Обрабатываем ключевое слово: {keyword}")
         region_data = create_wordstat_report(keyword)

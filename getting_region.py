@@ -1,36 +1,27 @@
 # -*- coding: utf-8 -*-
-import os
 import requests
-from dotenv import load_dotenv
 from loguru import logger
 
-load_dotenv(dotenv_path='.env')
-
-OAuth = os.getenv('OAuth')
-
-# Правильные URL
-URL_REGIONS = "https://api.wordstat.yandex.net/v1/regions"  # Для статистики по регионам
-URL_REGIONS_TREE = "https://api.wordstat.yandex.net/v1/getRegionsTree"  # Для списка регионов
-HEADERS = {
-    "Authorization": f"Bearer {OAuth}",
-    "Content-Type": "application/json",
-}
+from keys import OAuth
 
 
-def get_regions_tree():
+def get_regions_tree(OAuth):
     """
     Получает полный список регионов (ID -> название)
     """
     try:
+        URL_REGIONS_TREE = "https://api.wordstat.yandex.net/v1/getRegionsTree"  # Для списка регионов
+        HEADERS = {
+            "Authorization": f"Bearer {OAuth}",
+            "Content-Type": "application/json",
+        }
         response = requests.post(URL_REGIONS_TREE, headers=HEADERS)
         response.raise_for_status()
         print("RAW response:", response.text)
         tree = response.json()
-
         if not tree:
             logger.error("❌ Ответ от /v1/getRegionsTree пустой")
             return {}
-
         region_map = {}
         _parse_region_tree(tree, region_map)
         logger.success(f"✅ Загружено {len(region_map)} регионов")
@@ -56,7 +47,7 @@ def _parse_region_tree(node, region_map):
             _parse_region_tree(item, region_map)
 
 
-def get_wordstat_by_regions(keyword: str, region_type: str = "cities"):
+def get_wordstat_by_regions(keyword: str, OAuth, region_type: str = "cities"):
     """
     Получает статистику по регионам для ключевой фразы
     """
@@ -64,7 +55,11 @@ def get_wordstat_by_regions(keyword: str, region_type: str = "cities"):
         "phrase": keyword,
         "regionType": region_type,  # all, cities, regions, countries
     }
-
+    HEADERS = {
+        "Authorization": f"Bearer {OAuth}",
+        "Content-Type": "application/json",
+    }
+    URL_REGIONS = "https://api.wordstat.yandex.net/v1/regions"  # Для статистики по регионам
     try:
         response = requests.post(URL_REGIONS, json=payload, headers=HEADERS, timeout=10)
         if response.status_code == 200:
@@ -80,12 +75,9 @@ def get_wordstat_by_regions(keyword: str, region_type: str = "cities"):
 def pretty_regions(keyword: str, data: dict, region_names: dict) -> str:
     if not data or 'regions' not in data:
         return "Нет данных о регионах"
-
     result = [f"📊 Региональная статистика для: '{keyword}'"]
     result.append("\n📍 Топ регионов (по количеству запросов):")
-
     sorted_regions = sorted(data['regions'], key=lambda x: x['count'], reverse=True)
-
     for region in sorted_regions[:10]:
         region_id = region['regionId']
         name = region_names.get(region_id, "Неизвестный регион")
@@ -96,18 +88,15 @@ def pretty_regions(keyword: str, data: dict, region_names: dict) -> str:
             f"   • {name} (ID: {region_id}) — {count} запросов "
             f"(доля: {share:.2f}%, индекс: {affinity:.1f})"
         )
-
     return "\n".join(result)
 
 
 def main():
     # Сначала загружаем названия регионов
-    region_names = get_regions_tree()
-
+    region_names = get_regions_tree(OAuth=OAuth)
     # Затем запрашиваем статистику
     keyword = "курсы"
     data = get_wordstat_by_regions(keyword, "cities")
-
     if data:
         print(pretty_regions(keyword, data, region_names))
     else:
