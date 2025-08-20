@@ -2,7 +2,10 @@
 import requests
 from loguru import logger
 
-from getting_region import _parse_region_tree
+from getting_region import parse_region_tree
+
+
+# from getting_region import parse_region_tree
 
 
 def get_regions_tree(OAuth):
@@ -23,7 +26,7 @@ def get_regions_tree(OAuth):
             logger.error("❌ Ответ от /v1/getRegionsTree пустой")
             return {}
         region_map = {}
-        _parse_region_tree(tree, region_map)
+        parse_region_tree(tree, region_map)
         logger.success(f"✅ Загружено {len(region_map)} регионов")
         return region_map
 

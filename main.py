@@ -6,38 +6,20 @@ from loguru import logger
 from getting_region import get_regions_tree
 from keys import OAuth
 from regions import get_wordstat_by_regions
+from regions_utils import pretty_regions
 
 
-def pretty_wordstat(data: dict) -> str:
-    lines = []
-    lines.append(f"📊 Запрос: {data['requestPhrase']}")
-    lines.append(f"🔢 Общая частота: {data['totalCount']:,}".replace(",", " "))
-    lines.append("\n✨ Топ запросы:")
-    for item in data.get("topRequests", []):
-        lines.append(f"   • {item['phrase']} — {item['count']:,}".replace(",", " "))
-    lines.append("\n🔗 Ассоциации:")
-    for item in data.get("associations", []):
-        lines.append(f"   • {item['phrase']} — {item['count']:,}".replace(",", " "))
-    return "\n".join(lines)
-
-
-def pretty_regions(keyword: str, data: dict, region_names: dict) -> str:
-    if not data or 'regions' not in data:
-        return "Нет данных о регионах"
-    result = [f"📊 Региональная статистика для: '{keyword}'"]
-    result.append("\n📍 Топ регионов (по количеству запросов):")
-    sorted_regions = sorted(data['regions'], key=lambda x: x['count'], reverse=True)
-    for region in sorted_regions[:10]:
-        region_id = region['regionId']
-        name = region_names.get(region_id, "Неизвестный регион")
-        count = f"{region['count']:,}".replace(",", " ")
-        share = region['share'] * 100
-        affinity = region['affinityIndex']
-        result.append(
-            f"   • {name} (ID: {region_id}) — {count} запросов "
-            f"(доля: {share:.2f}%, индекс: {affinity:.1f})"
-        )
-    return "\n".join(result)
+# def pretty_wordstat(data: dict) -> str:
+#     lines = []
+#     lines.append(f"📊 Запрос: {data['requestPhrase']}")
+#     lines.append(f"🔢 Общая частота: {data['totalCount']:,}".replace(",", " "))
+#     lines.append("\n✨ Топ запросы:")
+#     for item in data.get("topRequests", []):
+#         lines.append(f"   • {item['phrase']} — {item['count']:,}".replace(",", " "))
+#     lines.append("\n🔗 Ассоциации:")
+#     for item in data.get("associations", []):
+#         lines.append(f"   • {item['phrase']} — {item['count']:,}".replace(",", " "))
+#     return "\n".join(lines)
 
 
 def main():
