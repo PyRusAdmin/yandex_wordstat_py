@@ -96,7 +96,7 @@ def main():
     region_names = get_regions_tree(OAuth=OAuth)
     # Затем запрашиваем статистику
     keyword = "курсы"
-    data = get_wordstat_by_regions(keyword, "cities")
+    data = get_wordstat_by_regions(keyword, OAuth, "cities")
     if data:
         print(pretty_regions(keyword, data, region_names))
     else:
