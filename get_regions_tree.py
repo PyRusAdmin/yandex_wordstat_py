@@ -5,9 +5,6 @@ from loguru import logger
 from getting_region import parse_region_tree
 
 
-# from getting_region import parse_region_tree
-
-
 def get_regions_tree(OAuth):
     """
     Получает полный список регионов (ID -> название)
