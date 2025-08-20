@@ -3,6 +3,7 @@ import requests
 from loguru import logger
 
 from keys import OAuth
+from wordstat_report import get_wordstat_by_regions
 
 
 def get_regions_tree(OAuth):
@@ -45,31 +46,6 @@ def _parse_region_tree(node, region_map):
     elif isinstance(node, list):
         for item in node:
             _parse_region_tree(item, region_map)
-
-
-def get_wordstat_by_regions(keyword: str, OAuth, region_type: str = "cities"):
-    """
-    Получает статистику по регионам для ключевой фразы
-    """
-    payload = {
-        "phrase": keyword,
-        "regionType": region_type,  # all, cities, regions, countries
-    }
-    HEADERS = {
-        "Authorization": f"Bearer {OAuth}",
-        "Content-Type": "application/json",
-    }
-    URL_REGIONS = "https://api.wordstat.yandex.net/v1/regions"  # Для статистики по регионам
-    try:
-        response = requests.post(URL_REGIONS, json=payload, headers=HEADERS, timeout=10)
-        if response.status_code == 200:
-            return response.json()
-        else:
-            logger.error(f"❌ {response.status_code}: {response.text}")
-            return None
-    except requests.exceptions.RequestException as e:
-        logger.error(f"❌ Ошибка запроса: {e}")
-        return None
 
 
 def pretty_regions(keyword: str, data: dict, region_names: dict) -> str:
