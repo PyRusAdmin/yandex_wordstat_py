@@ -3,7 +3,7 @@ from loguru import logger
 
 from get_regions_tree import get_regions_tree
 from keys import OAuth
-from wordstat_report import get_wordstat_by_regions
+from regions import get_wordstat_by_regions
 
 
 def _parse_region_tree(node, region_map):

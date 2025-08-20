@@ -5,7 +5,7 @@ from loguru import logger
 
 from getting_region import get_regions_tree
 from keys import OAuth
-from wordstat_report import get_wordstat_by_regions
+from regions import get_wordstat_by_regions
 
 
 def pretty_wordstat(data: dict) -> str:
