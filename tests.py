@@ -11,10 +11,8 @@ from regions_utils import pretty_regions
 
 load_dotenv(dotenv_path='.env')
 
-OAuth = os.getenv('OAuth')
 
-
-def tests():
+def tests(OAuth):
     """
     Главная функция скрипта для получения региональной статистики по ключевым словам.
 
@@ -59,4 +57,5 @@ def tests():
 
 
 if __name__ == "__main__":
-    tests()
+    OAuth = os.getenv('OAuth')
+    tests(OAuth)

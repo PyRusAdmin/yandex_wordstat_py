@@ -1,0 +1,254 @@
+[
+    {
+        "label": "runpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "runpy",
+        "description": "runpy",
+        "detail": "runpy",
+        "documentation": {}
+    },
+    {
+        "label": "annotations",
+        "importPath": "__future__",
+        "description": "__future__",
+        "isExtraImport": true,
+        "detail": "__future__",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "site",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "importPath": "loguru",
+        "description": "loguru",
+        "isExtraImport": true,
+        "detail": "loguru",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "importPath": "loguru",
+        "description": "loguru",
+        "isExtraImport": true,
+        "detail": "loguru",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "importPath": "loguru",
+        "description": "loguru",
+        "isExtraImport": true,
+        "detail": "loguru",
+        "documentation": {}
+    },
+    {
+        "label": "get_regions_tree",
+        "importPath": "get_regions_tree",
+        "description": "get_regions_tree",
+        "isExtraImport": true,
+        "detail": "get_regions_tree",
+        "documentation": {}
+    },
+    {
+        "label": "get_wordstat_by_regions",
+        "importPath": "regions",
+        "description": "regions",
+        "isExtraImport": true,
+        "detail": "regions",
+        "documentation": {}
+    },
+    {
+        "label": "pretty_regions",
+        "importPath": "regions_utils",
+        "description": "regions_utils",
+        "isExtraImport": true,
+        "detail": "regions_utils",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "parse_region_tree",
+        "importPath": "getting_region",
+        "description": "getting_region",
+        "isExtraImport": true,
+        "detail": "getting_region",
+        "documentation": {}
+    },
+    {
+        "label": "bin_dir",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"Scripts\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"wordstat_py\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "base",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "base = bin_dir[: -len(\"Scripts\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"wordstat_py\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir, *os.environ.get(\"PATH\", \"\").split(os.pathsep)])\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"wordstat_py\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\nos.environ[\"VIRTUAL_ENV_PROMPT\"] = \"wordstat_py\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV_PROMPT\"]",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV_PROMPT\"] = \"wordstat_py\" or os.path.basename(base)  # noqa: SIM222\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in \"..\\\\Lib\\\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": ".venv.Scripts.activate_this",
+        "description": ".venv.Scripts.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": ".venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "tests",
+        "kind": 2,
+        "importPath": "tests",
+        "description": "tests",
+        "peekOfCode": "def tests(OAuth):\n    \"\"\"\n    Главная функция скрипта для получения региональной статистики по ключевым словам.\n    Работа скрипта:\n        1. Загружает полный список регионов с помощью функции get_regions_tree().\n        2. Для каждого ключевого слова из списка keywords:\n            - Получает статистику по регионам через API Яндекс.Вордстат\n              с помощью get_wordstat_by_regions().\n            - Форматирует и выводит результаты с помощью pretty_regions().\n        3. Делает паузу в 1 секунду между запросами, чтобы избежать превышения лимитов API.",
+        "detail": "tests",
+        "documentation": {}
+    },
+    {
+        "label": "parse_region_tree",
+        "kind": 2,
+        "importPath": "getting_region",
+        "description": "getting_region",
+        "peekOfCode": "def parse_region_tree(node, region_map):\n    \"\"\"\n    Рекурсивно обходит дерево регионов и формирует плоский словарь\n    сопоставления ID региона с его названием.\n    Дерево регионов обычно приходит из API Яндекс.Вордстат в формате JSON,\n    где каждый регион представлен объектом с ключами:\n        - \"value\" — уникальный идентификатор региона;\n        - \"label\" — название региона;\n        - \"children\" — список дочерних регионов (может быть пустым или None).\n    Функция обходит все уровни вложенности (страны → регионы → города)",
+        "detail": "getting_region",
+        "documentation": {}
+    },
+    {
+        "label": "get_regions_tree",
+        "kind": 2,
+        "importPath": "get_regions_tree",
+        "description": "get_regions_tree",
+        "peekOfCode": "def get_regions_tree(OAuth):\n    \"\"\"\n    Загружает полный список регионов из API Яндекс.Вордстат и формирует словарь\n    сопоставления ID региона с его названием.\n    Функция отправляет POST-запрос на метод API /v1/getRegionsTree, получает дерево\n    регионов (страны, регионы, города) и преобразует его в плоский словарь вида:\n        {region_id (int): region_name (str)}\n    Args:\n        OAuth (str): OAuth-токен для авторизации в API Яндекс.Вордстат.\n    Returns:",
+        "detail": "get_regions_tree",
+        "documentation": {}
+    },
+    {
+        "label": "get_wordstat_by_regions",
+        "kind": 2,
+        "importPath": "regions",
+        "description": "regions",
+        "peekOfCode": "def get_wordstat_by_regions(keyword: str, OAuth: str, region_type: str = \"cities\") -> dict | None:\n    \"\"\"\n    Получает статистику запросов по регионам из API Яндекс.Вордстат.\n    Функция отправляет POST-запрос к API `https://api.wordstat.yandex.net/v1/regions`\n    и возвращает данные о частоте запросов для указанного ключевого слова,\n    сгруппированные по регионам (страны, регионы, города и т.д.).\n    Args:\n        keyword (str): Ключевая фраза, по которой нужно получить статистику.\n        OAuth (str): OAuth-токен для авторизации в API Яндекса.\n        region_type (str, optional): Тип регионов для анализа.",
+        "detail": "regions",
+        "documentation": {}
+    },
+    {
+        "label": "pretty_regions",
+        "kind": 2,
+        "importPath": "regions_utils",
+        "description": "regions_utils",
+        "peekOfCode": "def pretty_regions(keyword: str, data: dict, region_names: dict) -> str:\n    \"\"\"\n    Форматирует региональную статистику по ключевому слову для отображения в удобочитаемом виде.\n    Args:\n        keyword (str): Ключевое слово, по которому собирается статистика.\n        data (dict): Сырые данные о регионах из API Wordstat.\n                     Ожидается структура вида:\n                     {\n                         \"regions\": [\n                             {",
+        "detail": "regions_utils",
+        "documentation": {}
+    }
+]
