@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
+import os
 import time
 
+from dotenv import load_dotenv
 from loguru import logger
 
 from get_regions_tree import get_regions_tree
-from keys import OAuth
 from regions import get_wordstat_by_regions
 from regions_utils import pretty_regions
+
+load_dotenv(dotenv_path='.env')
+
+OAuth = os.getenv('OAuth')
 
 
 def main():
