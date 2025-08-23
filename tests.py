@@ -14,7 +14,7 @@ load_dotenv(dotenv_path='.env')
 OAuth = os.getenv('OAuth')
 
 
-def main():
+def tests():
     """
     Главная функция скрипта для получения региональной статистики по ключевым словам.
 
@@ -59,4 +59,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    tests()
