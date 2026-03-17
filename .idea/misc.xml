@@ -3,6 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="uv (wordstat_py)" />
   </component>
-  <component name="KubernetesApiProvider">{}</component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (wordstat_py)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="uv (wordstat_py)" project-jdk-type="Python SDK" />
 </project>
