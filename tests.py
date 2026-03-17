@@ -45,7 +45,9 @@ def tests(OAuth):
             в читаемом формате с топ-10 регионов.
     """
     region_names = get_regions_tree(OAuth=OAuth)
+
     keywords = ["маркетинг", "обучение", "курсы"]
+
     for keyword in keywords:
         logger.info(f"🔍 Обрабатываем ключевое слово: {keyword}")
         data = get_wordstat_by_regions(keyword, OAuth, "cities")
